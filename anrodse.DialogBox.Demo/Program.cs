@@ -14,8 +14,7 @@ namespace anrodse.Forms.Demo
 		{
 			try
 			{
-				DialogBoxResult result = DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.OkCancel);
-				MessageBox.Show("Resultado: " + result);
+				Application.Run(new Principal());
 			}
 			catch (Exception ex)
 			{
