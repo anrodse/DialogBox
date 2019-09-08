@@ -22,4 +22,5 @@ This project is licensed under the MIT License
 ## Comming soon
 - Button Text translations
 - Set of styles, including color definition
+- Custom icons
 - More static Show/ShowDialog methods
