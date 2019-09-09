@@ -23,7 +23,7 @@ namespace anrodse.Forms.Demo
 
 		private void btnOkCancel_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.OkCancel).ToString();
+			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.OkCancel, icon: DialogBoxIcon.Asterisk).ToString();
 		}
 
 		private void btnRetryCancel_Click(object sender, EventArgs e)
@@ -38,7 +38,13 @@ namespace anrodse.Forms.Demo
 
 		private void btnYesNoCancel_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.YesNoCancel).ToString();
+			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox",
+				"Titulo DialogBox",
+				DialogBoxButtons.YesNoCancel,
+				timeOut: 10000,
+				disable: 2000,
+				defaultButton: MessageBoxDefaultButton.Button1
+				).ToString();
 		}
 
 		private void btnAbortRetryIgnore_Click(object sender, EventArgs e)
