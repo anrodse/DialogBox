@@ -329,6 +329,21 @@ namespace anrodse.Forms
 
 					switch (TimeoutResult)
 					{
+						case DialogBoxTimeoutResult.Default:
+							//	defaultBtn.PerformClick();
+							break;
+
+						case DialogBoxTimeoutResult.Cancel:
+							//	if (!GetCancelBtn())
+							//	{
+							//		SetResultAndClose(DialogBoxResult.Cancel);
+							//	}
+							//	else
+							//	{
+							//		defaultBtn.PerformClick();
+							//	}
+							break;
+
 						case DialogBoxTimeoutResult.Timeout:
 							SetResultAndClose(DialogBoxResult.Timeout);
 							break;
