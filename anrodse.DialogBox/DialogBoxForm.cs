@@ -28,7 +28,9 @@ namespace anrodse.Forms
 
 		#region Constantes
 
-		private const int TimerTock = 250;
+		private const int TIMER_TOCK = 250;
+		private const int TEXT_MAX_WIDTH = 600;
+		private const int TEXT_MAX_HEIGHT = 600;
 
 		#endregion Constantes
 
@@ -100,11 +102,11 @@ namespace anrodse.Forms
 
 		private void DialogBoxForm_Load(object sender, EventArgs e)
 		{
-			SetButtons();
+			if (this.components == null) this.components = new System.ComponentModel.Container();
+
 			PlayBeep();
-
-			Text = Caption;
-
+			SetButtons();
+			SetFormWidth();
 			StartTimers();
 		}
 
@@ -205,6 +207,55 @@ namespace anrodse.Forms
 
 		#endregion Botones
 
+		#region Tamaño
+
+		private void SetFormWidth()
+		{
+			Size btnsSize = GetButtonsSize();
+			Size textSize = GetTextSize();
+			Size imagSize = GetImageSize();
+
+			int width = Math.Max(btnsSize.Width, textSize.Width + imagSize.Width);
+			int height = Math.Max(imagSize.Height, textSize.Height) + btnsSize.Height + 74; // Mínimo 80, no se de dónde sale
+
+			this.Size = new Size(width, height);
+		}
+
+		private Size GetImageSize()
+		{
+			if (image == DialogBoxIcon.None) pnIcono.Size = new Size(0, 0);
+			else pnIcono.Size = new Size(20, 20);
+
+			//return pnIcono.Size;
+			return new Size(0, 0);
+		}
+
+		private Size GetTextSize()
+		{
+			using (Graphics g = this.CreateGraphics())
+			{
+				SizeF strRectSizeF = g.MeasureString(lblMensaje.Text, lblMensaje.Font, new SizeF(TEXT_MAX_WIDTH, TEXT_MAX_HEIGHT));
+
+				//if (strRectSizeF.Height > 40) lblMensaje.TextAlign = ContentAlignment.TopLeft;
+
+				return new Size((int)Math.Ceiling(strRectSizeF.Width), (int)Math.Ceiling(strRectSizeF.Height));
+			}
+		}
+
+		private Size GetButtonsSize()
+		{
+			int width = 1;
+
+			foreach (Control ctr in pnFooter.Controls)
+			{
+				width += ctr.Width;
+			}
+
+			return new Size(width + 20, pnFooter.Height);
+		}
+
+		#endregion Tamaño
+
 		#region Temporizadores
 
 		private Timer timerTimeout = null;
@@ -212,14 +263,10 @@ namespace anrodse.Forms
 
 		private void StartTimers()
 		{
-			if (Disable > 0)
-			{
-				StartDisableTimer();
-			}
-			else if (Timeout > 0)
-			{
-				StartTimeoutTimer();
-			}
+			Text = Caption;
+
+			StartDisableTimer();
+			StartTimeoutTimer();
 		}
 
 		private void StartDisableTimer()
@@ -239,7 +286,7 @@ namespace anrodse.Forms
 
 				if (!timerDisable.Enabled)
 				{
-					timerDisable.Interval = TimerTock;
+					timerDisable.Interval = TIMER_TOCK;
 					timerDisable.Start();
 					timerDisable_Tick(null, null);
 				}
@@ -258,7 +305,7 @@ namespace anrodse.Forms
 
 				if (!timerTimeout.Enabled)
 				{
-					timerTimeout.Interval = TimerTock;
+					timerTimeout.Interval = TIMER_TOCK;
 					timerTimeout.Start();
 					timerTimeout_Tick(null, null);
 				}
@@ -290,7 +337,7 @@ namespace anrodse.Forms
 					SetTimerCaption(Disable, new string[] { "⦵", "⦸", "⦶", "⊘" });
 				}
 
-				Disable -= TimerTock;
+				Disable -= TIMER_TOCK;
 			}
 			finally
 			{
@@ -337,7 +384,7 @@ namespace anrodse.Forms
 					SetTimerCaption(Timeout, new string[] { "🕑", "🕓", "🕗", "🕙" });
 				}
 
-				Timeout -= TimerTock;
+				Timeout -= TIMER_TOCK;
 			}
 			finally
 			{
@@ -348,7 +395,7 @@ namespace anrodse.Forms
 		private void SetTimerCaption(int tiempo, string[] symbols)
 		{
 			int t = (int)tiempo / 1000;
-			int tick = (int)tiempo / TimerTock;
+			int tick = (int)tiempo / TIMER_TOCK;
 			string ico = symbols[tick % symbols.Length];
 
 			Text = $"{Caption}    ⟨ {t.ToString().PadLeft(2, ' ')} {ico} ⟩";

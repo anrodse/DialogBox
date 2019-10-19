@@ -13,6 +13,8 @@ namespace anrodse.Forms.Demo
 	{
 		public Principal()
 		{
+			MessageBox.Show("asdf");
+
 			InitializeComponent();
 		}
 
@@ -59,7 +61,85 @@ namespace anrodse.Forms.Demo
 
 		private void btnNone_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.None).ToString();
+			string mensajeCorto = "Test de DialogBox";
+			string mensajeLargo = "Línea 1\r\n" +
+										"Texto largooooooooooooooooooooo jejejejs fas fda rojwe asodfha uisdjkfhasjlfh awrjlshvujawsdn ñojlqwkeafjlasdnvm,ansd jlgahwrljs erjl hgeroljgjsld,nasfjlf nower herjl jler gjlse nfgjklsdf klsdb gksdf jklsfdgjkls fjksl hgjksdf hjksd hjklsd fhgjksfgsfz sdgasf fs jejejejs fas fda rojwe asodfha uisdjkfhasjlfh awrjlshvujawsdn ñojlqwkeafjlasdnvm,ansd jlgahwrljs erjl hgeroljgjsld,nasfjlf nower herjl jler gjlse nfgjklsdf klsdb gksdf jklsfdgjkls fjksl hgjksdf hjksd hjklsd fhgjksfgsfz sdgasf fs jejejejs fas fda rojwe asodfha uisdjkfhasjlfh awrjlshvujawsdn ñojlqwkeafjlasdnvm,ansd jlgahwrljs erjl hgeroljgjsld,nasfjlf nower herjl jler gjlse nfgjklsdf klsdb gksdf jklsfdgjkls fjksl hgjksdf hjksd hjklsd fhgjksfgsfz sdgasf fs \r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Líena nueva\r\n" +
+										"Última línea\r\n";
+
+			txtRes.Text = Forms.DialogBox.Show(mensajeLargo, "Titulo DialogBox", DialogBoxButtons.None).ToString();
 		}
 	}
 }

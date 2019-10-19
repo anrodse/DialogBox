@@ -16,7 +16,6 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogBoxForm));
-			this.components = new System.ComponentModel.Container();
 			this.pnIcono = new System.Windows.Forms.Panel();
 			this.pnFooter = new System.Windows.Forms.Panel();
 			this.lblMensaje = new System.Windows.Forms.Label();
@@ -30,28 +29,29 @@
 			this.pnIcono.Location = new System.Drawing.Point(10, 10);
 			this.pnIcono.Name = "pnIcono";
 			this.pnIcono.Padding = new System.Windows.Forms.Padding(10);
-			this.pnIcono.Size = new System.Drawing.Size(109, 96);
+			this.pnIcono.Size = new System.Drawing.Size(49, 49);
 			this.pnIcono.TabIndex = 0;
 			// 
 			// pnFooter
 			// 
 			this.pnFooter.BackColor = System.Drawing.SystemColors.Control;
 			this.pnFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnFooter.Location = new System.Drawing.Point(0, 116);
+			this.pnFooter.Location = new System.Drawing.Point(0, 69);
 			this.pnFooter.Name = "pnFooter";
 			this.pnFooter.Padding = new System.Windows.Forms.Padding(9);
-			this.pnFooter.Size = new System.Drawing.Size(459, 42);
+			this.pnFooter.Size = new System.Drawing.Size(184, 42);
 			this.pnFooter.TabIndex = 1;
 			// 
 			// lblMensaje
 			// 
 			this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lblMensaje.Location = new System.Drawing.Point(119, 10);
+			this.lblMensaje.Location = new System.Drawing.Point(59, 10);
 			this.lblMensaje.Name = "lblMensaje";
 			this.lblMensaje.Padding = new System.Windows.Forms.Padding(10);
-			this.lblMensaje.Size = new System.Drawing.Size(330, 96);
+			this.lblMensaje.Size = new System.Drawing.Size(115, 49);
 			this.lblMensaje.TabIndex = 2;
 			this.lblMensaje.Text = "label1";
+			this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// pnBody
 			// 
@@ -61,20 +61,21 @@
 			this.pnBody.Location = new System.Drawing.Point(0, 0);
 			this.pnBody.Name = "pnBody";
 			this.pnBody.Padding = new System.Windows.Forms.Padding(10);
-			this.pnBody.Size = new System.Drawing.Size(459, 116);
+			this.pnBody.Size = new System.Drawing.Size(184, 69);
 			this.pnBody.TabIndex = 3;
 			// 
 			// DialogBoxForm
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(459, 158);
+			this.ClientSize = new System.Drawing.Size(184, 111);
 			this.Controls.Add(this.pnBody);
 			this.Controls.Add(this.pnFooter);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(200, 13);
 			this.Name = "DialogBoxForm";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
