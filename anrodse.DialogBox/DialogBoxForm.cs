@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Media;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace anrodse.Forms
@@ -13,13 +9,28 @@ namespace anrodse.Forms
 	internal partial class DialogBoxForm : Form
 	{
 
-		#region Campos
+		#region Deshabilitar control
 
-		private const int timerTock = 250;
-		private Timer timerTimeout = null;
-		private Timer timerDisable = null;
+		enum MenuItem { SC_CLOSE = 0xF060 }
 
-		#endregion Campos
+		[DllImport("user32")]
+		public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+		[DllImport("user32")]
+		public static extern bool EnableMenuItem(IntPtr hMenu, uint itemId, uint uEnable);
+
+		private void EnableMenuItem(MenuItem ctrl, bool enabled)
+		{
+			EnableMenuItem(GetSystemMenu(this.Handle, false), (uint)ctrl, enabled ? 0u : 1u);
+		}
+
+		#endregion Boton cerrar
+
+		#region Constantes
+
+		private const int TimerTock = 250;
+
+		#endregion Constantes
 
 		#region Propiedades
 
@@ -67,10 +78,6 @@ namespace anrodse.Forms
 			Result = DialogBoxResult.Cancel;
 		}
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing)
@@ -88,6 +95,44 @@ namespace anrodse.Forms
 		}
 
 		#endregion Constructor
+
+		#region Eventos
+
+		private void DialogBoxForm_Load(object sender, EventArgs e)
+		{
+			SetButtons();
+			PlayBeep();
+
+			Text = Caption;
+
+			StartTimers();
+		}
+
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+		{
+			if ((int)keyData == (int)(Keys.Alt | Keys.F4))
+			{
+#warning return Cancel button result
+				SetResultAndClose(DialogBoxResult.Cancel);
+			}
+
+			if ((int)keyData == (int)(Keys.Control | Keys.Insert))
+			{
+				Clipboard.SetText(GetDialogAsString());
+				return true;
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
+		}
+
+		private void btn_Click(object sender, EventArgs e)
+		{
+			if (sender is DialogBoxButton btn)
+				if (btn.Value != DialogBoxResult.None)
+					SetResultAndClose(btn.Value);
+		}
+
+		#endregion Eventos
 
 		#region ShowDialog
 
@@ -107,77 +152,7 @@ namespace anrodse.Forms
 
 		#endregion ShowDialog
 
-		#region Eventos
-
-		private void DialogBoxForm_Load(object sender, EventArgs e)
-		{
-			SetButtons();
-			PlayBeep();
-
-			Text = Caption;
-
-			StartTimer();
-		}
-
-		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-		{
-			if ((int)keyData == (int)(Keys.Alt | Keys.F4))
-			{
-#warning return Cancel button result
-				SetResultAndClose(DialogBoxResult.Cancel);
-			}
-
-			if ((int)keyData == (int)(Keys.Control | Keys.Insert))
-			{
-				Clipboard.SetText(GetBoxMessaje());
-				return true;
-			}
-
-			return base.ProcessCmdKey(ref msg, keyData);
-		}
-
-		private string GetBoxMessaje()
-		{
-			string sep = "------------------------\r\n";
-			string txt = sep
-					+ Caption + "\r\n"
-					+ sep
-					+ Message + "\r\n"
-					+ sep
-					+ GetButtonsText() + "\r\n" + sep;
-
-			return txt;
-		}
-
-		private string GetButtonsText()
-		{
-			string txt = String.Empty;
-			foreach (Control button in pnFooter.Controls)
-			{
-				txt = ((button as DialogBoxButton)?.Text ?? "") + "  ";
-			}
-
-			return txt;
-		}
-
-		private void btn_Click(object sender, EventArgs e)
-		{
-			if (sender is DialogBoxButton btn)
-				if (btn.Value != DialogBoxResult.None)
-					SetResultAndClose(btn.Value);
-		}
-
-		#endregion Eventos
-
-		#region Start
-
-		private void PlayBeep()
-		{
-			if (AlertSound && image != DialogBoxIcon.None)
-			{
-				SystemSounds.Beep.Play();
-			}
-		}
+		#region Botones
 
 		private void SetButtons()
 		{
@@ -228,7 +203,14 @@ namespace anrodse.Forms
 			pnFooter.Controls.Add(new DialogBoxButton() { Text = button, Value = result, Dock = DockStyle.Right });
 		}
 
-		private void StartTimer()
+		#endregion Botones
+
+		#region Temporizadores
+
+		private Timer timerTimeout = null;
+		private Timer timerDisable = null;
+
+		private void StartTimers()
 		{
 			if (Disable > 0)
 			{
@@ -257,42 +239,10 @@ namespace anrodse.Forms
 
 				if (!timerDisable.Enabled)
 				{
-					timerDisable.Interval = timerTock;
+					timerDisable.Interval = TimerTock;
 					timerDisable.Start();
 					timerDisable_Tick(null, null);
 				}
-			}
-		}
-
-		private void timerDisable_Tick(object sender, EventArgs e)
-		{
-			try
-			{
-				SuspendLayout();
-
-				if (Disable <= 0)
-				{
-					Text = Caption;
-
-					foreach (Control c in pnFooter.Controls)
-					{
-						if (c is DialogBoxButton btn) btn.Enabled = true;
-					}
-
-					timerDisable?.Stop();
-					StartTimeoutTimer();
-				}
-				else
-				{
-					int t = (int)Disable / 1000;
-					Text = $"{Caption}    [ ⊘ {t} ]";
-				}
-
-				Disable -= timerTock;
-			}
-			finally
-			{
-				ResumeLayout();
 			}
 		}
 
@@ -308,10 +258,43 @@ namespace anrodse.Forms
 
 				if (!timerTimeout.Enabled)
 				{
-					timerTimeout.Interval = timerTock;
+					timerTimeout.Interval = TimerTock;
 					timerTimeout.Start();
 					timerTimeout_Tick(null, null);
 				}
+			}
+		}
+
+		private void timerDisable_Tick(object sender, EventArgs e)
+		{
+			try
+			{
+				SuspendLayout();
+
+				if (Disable <= 0)
+				{
+					Text = Caption;
+					EnableMenuItem(MenuItem.SC_CLOSE, true);
+
+					foreach (Control c in pnFooter.Controls)
+					{
+						if (c is DialogBoxButton btn) btn.Enabled = true;
+					}
+
+					timerDisable?.Stop();
+					StartTimeoutTimer();
+				}
+				else
+				{
+					EnableMenuItem(MenuItem.SC_CLOSE, false);
+					SetTimerCaption(Disable, new string[] { "⦵", "⦸", "⦶", "⊘" });
+				}
+
+				Disable -= TimerTock;
+			}
+			finally
+			{
+				ResumeLayout();
 			}
 		}
 
@@ -351,13 +334,10 @@ namespace anrodse.Forms
 				}
 				else
 				{
-					int t = (int)Timeout / timerTock;
-					string ico = (t % 3 == 0) ? "🕑" : (t % 2 == 0) ? "🕓" : "🕗";
-
-					Text = $"{Caption}    [ {ico} {(int)Timeout / 1000} ]";
+					SetTimerCaption(Timeout, new string[] { "🕑", "🕓", "🕗", "🕙" });
 				}
 
-				Timeout -= timerTock;
+				Timeout -= TimerTock;
 			}
 			finally
 			{
@@ -365,14 +345,49 @@ namespace anrodse.Forms
 			}
 		}
 
-		#endregion Start
+		private void SetTimerCaption(int tiempo, string[] symbols)
+		{
+			int t = (int)tiempo / 1000;
+			int tick = (int)tiempo / TimerTock;
+			string ico = symbols[tick % symbols.Length];
+
+			Text = $"{Caption}    ⟨ {t.ToString().PadLeft(2, ' ')} {ico} ⟩";
+		}
+
+		#endregion Temporizadores
+
+		#region Métodos Extra
+
+		private void PlayBeep()
+		{
+			if (AlertSound && image != DialogBoxIcon.None)
+			{
+				SystemSounds.Beep.Play();
+			}
+		}
 
 		private void SetResultAndClose(DialogBoxResult result)
 		{
 			Result = result;
-
 			DialogResult = DialogResult.OK; // si (FormBorderStyle == FixedDialog) -> Cierra
 		}
+
+		private string GetDialogAsString()
+		{
+			string sep = "------------------------\r\n";
+
+			string buttonsText = String.Empty;
+			foreach (Control button in pnFooter.Controls)
+			{
+				buttonsText = ((button as DialogBoxButton)?.Text ?? "") + "  ";
+			}
+
+			return sep + Caption + "\r\n"
+					+ sep + Message + "\r\n"
+					+ sep + buttonsText + "\r\n" + sep;
+		}
+
+		#endregion Métodos Extra
 
 	}
 }

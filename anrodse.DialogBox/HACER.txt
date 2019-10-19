@@ -1,0 +1,11 @@
+﻿
+- Poner Icono/Imagen
+- Ajustar tamaño
+
+
+---------------
+
+- Estilos
+- Botones extra
+
+
