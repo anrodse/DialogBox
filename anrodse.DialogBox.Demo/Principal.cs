@@ -13,19 +13,22 @@ namespace anrodse.Forms.Demo
 	{
 		public Principal()
 		{
-			MessageBox.Show("asdf");
-
 			InitializeComponent();
 		}
 
 		private void btnOk_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.None).ToString();
+			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.None, DialogBoxIcon.Error).ToString();
 		}
 
 		private void btnOkCancel_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.OkCancel, icon: DialogBoxIcon.Asterisk).ToString();
+			string mensajeLargo = 
+									"Texto largooooooooooooooooooooo \r\n" +
+									"Líena nueva\r\n" +
+									"Última línea\r\n";
+
+			txtRes.Text = Forms.DialogBox.Show(mensajeLargo, "Titulo DialogBox", DialogBoxButtons.OkCancel, DialogBoxIcon.Stop).ToString();
 		}
 
 		private void btnRetryCancel_Click(object sender, EventArgs e)

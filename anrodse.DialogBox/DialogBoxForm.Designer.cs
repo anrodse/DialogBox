@@ -17,20 +17,35 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogBoxForm));
 			this.pnIcono = new System.Windows.Forms.Panel();
+			this.imgIcono = new System.Windows.Forms.PictureBox();
 			this.pnFooter = new System.Windows.Forms.Panel();
 			this.lblMensaje = new System.Windows.Forms.Label();
 			this.pnBody = new System.Windows.Forms.Panel();
+			this.pnIcono.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.imgIcono)).BeginInit();
 			this.pnBody.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnIcono
 			// 
+			this.pnIcono.BackColor = System.Drawing.Color.Transparent;
+			this.pnIcono.Controls.Add(this.imgIcono);
 			this.pnIcono.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pnIcono.Location = new System.Drawing.Point(10, 10);
+			this.pnIcono.Margin = new System.Windows.Forms.Padding(10);
 			this.pnIcono.Name = "pnIcono";
-			this.pnIcono.Padding = new System.Windows.Forms.Padding(10);
-			this.pnIcono.Size = new System.Drawing.Size(49, 49);
+			this.pnIcono.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
+			this.pnIcono.Size = new System.Drawing.Size(52, 49);
 			this.pnIcono.TabIndex = 0;
+			// 
+			// imgIcono
+			// 
+			this.imgIcono.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.imgIcono.Location = new System.Drawing.Point(10, 12);
+			this.imgIcono.Name = "imgIcono";
+			this.imgIcono.Size = new System.Drawing.Size(32, 25);
+			this.imgIcono.TabIndex = 0;
+			this.imgIcono.TabStop = false;
 			// 
 			// pnFooter
 			// 
@@ -44,13 +59,15 @@
 			// 
 			// lblMensaje
 			// 
+			this.lblMensaje.BackColor = System.Drawing.Color.Transparent;
 			this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lblMensaje.Location = new System.Drawing.Point(59, 10);
+			this.lblMensaje.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.lblMensaje.Location = new System.Drawing.Point(62, 10);
 			this.lblMensaje.Name = "lblMensaje";
 			this.lblMensaje.Padding = new System.Windows.Forms.Padding(10);
-			this.lblMensaje.Size = new System.Drawing.Size(115, 49);
+			this.lblMensaje.Size = new System.Drawing.Size(112, 49);
 			this.lblMensaje.TabIndex = 2;
-			this.lblMensaje.Text = "label1";
+			this.lblMensaje.Text = "mensaje";
 			this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// pnBody
@@ -80,6 +97,8 @@
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Load += new System.EventHandler(this.DialogBoxForm_Load);
+			this.pnIcono.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.imgIcono)).EndInit();
 			this.pnBody.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -91,5 +110,6 @@
 		private System.Windows.Forms.Panel pnFooter;
 		private System.Windows.Forms.Label lblMensaje;
 		private System.Windows.Forms.Panel pnBody;
+		private System.Windows.Forms.PictureBox imgIcono;
 	}
 }

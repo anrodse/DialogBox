@@ -50,20 +50,7 @@ namespace anrodse.Forms
 
 		public Icon Icono { get; private set; }
 
-		private DialogBoxIcon image;
-		public DialogBoxIcon Image
-		{
-			set
-			{
-				image = value;
-				setImage();
-			}
-		}
-
-		private void setImage()
-		{
-			//if (icon != DialogBoxIcon.None) throw new Exception("No definido");
-		}
+		public DialogBoxIcon Image { private get; set; }
 
 		public MessageBoxDefaultButton DefaultButton { get; set; }
 
@@ -106,6 +93,7 @@ namespace anrodse.Forms
 
 			PlayBeep();
 			SetButtons();
+			SetImage();
 			SetFormWidth();
 			StartTimers();
 		}
@@ -153,6 +141,48 @@ namespace anrodse.Forms
 		}
 
 		#endregion ShowDialog
+
+		#region Imagen
+
+		private void SetImage()
+		{
+			switch (Image)
+			{
+				//case DialogBoxIcon.Hand:
+				//	Icono = SystemIcons.Hand;
+				//	break;
+				//case DialogBoxIcon.Stop:
+				//	Icono = SystemIcons.Stop;
+				//	break;
+				case DialogBoxIcon.Error:
+					Icono = SystemIcons.Error;
+					break;
+				case DialogBoxIcon.Question:
+					Icono = SystemIcons.Question;
+					break;
+				//case DialogBoxIcon.Warning:
+				//	Icono = SystemIcons.Warning;
+				//	break;
+				case DialogBoxIcon.Exclamation:
+					Icono = SystemIcons.Exclamation;
+					break;
+				//case DialogBoxIcon.Information:
+				//	Icono = SystemIcons.Information;
+				//	break;
+				case DialogBoxIcon.Asterisk:
+					Icono = SystemIcons.Asterisk;
+					break;
+
+				case DialogBoxIcon.None:
+					Icono = null;
+					break;
+			}
+
+			if (Image != DialogBoxIcon.None) { imgIcono.Image = new Icon(Icono, 32, 32).ToBitmap(); }
+			else { pnIcono.Width = 0; }
+		}
+
+		#endregion Imagen
 
 		#region Botones
 
@@ -216,18 +246,15 @@ namespace anrodse.Forms
 			Size imagSize = GetImageSize();
 
 			int width = Math.Max(btnsSize.Width, textSize.Width + imagSize.Width);
-			int height = Math.Max(imagSize.Height, textSize.Height) + btnsSize.Height + 74; // Mínimo 80, no se de dónde sale
+			int height = Math.Max(imagSize.Height, textSize.Height) + btnsSize.Height + 74; // Mínimo 80, padding más bordes
 
 			this.Size = new Size(width, height);
 		}
 
 		private Size GetImageSize()
 		{
-			if (image == DialogBoxIcon.None) pnIcono.Size = new Size(0, 0);
-			else pnIcono.Size = new Size(20, 20);
-
-			//return pnIcono.Size;
-			return new Size(0, 0);
+			if (Image == DialogBoxIcon.None) return new Size(0, 0);
+			return new Size(pnIcono.Width, Math.Min(pnIcono.Height, 32));
 		}
 
 		private Size GetTextSize()
@@ -238,13 +265,13 @@ namespace anrodse.Forms
 
 				//if (strRectSizeF.Height > 40) lblMensaje.TextAlign = ContentAlignment.TopLeft;
 
-				return new Size((int)Math.Ceiling(strRectSizeF.Width), (int)Math.Ceiling(strRectSizeF.Height));
+				return new Size((int)Math.Ceiling(strRectSizeF.Width), (int)Math.Ceiling(strRectSizeF.Height) + 20);
 			}
 		}
 
 		private Size GetButtonsSize()
 		{
-			int width = 1;
+			int width = 0;
 
 			foreach (Control ctr in pnFooter.Controls)
 			{
@@ -407,7 +434,7 @@ namespace anrodse.Forms
 
 		private void PlayBeep()
 		{
-			if (AlertSound && image != DialogBoxIcon.None)
+			if (AlertSound && Image != DialogBoxIcon.None)
 			{
 				SystemSounds.Beep.Play();
 			}
