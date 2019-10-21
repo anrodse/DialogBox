@@ -59,7 +59,7 @@ namespace anrodse.Forms.Demo
 
 		private void btnAbortRetryIgnoreIgnoreAll_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.AbortRetryIgnoreIgnoreAll).ToString();
+			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.AbortRetryIgnoreIgnoreAll, defaultButton: 2).ToString();
 		}
 
 		private void btnNone_Click(object sender, EventArgs e)

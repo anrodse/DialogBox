@@ -194,10 +194,14 @@ namespace anrodse.Forms
 
 		private void SetButtons()
 		{
+			int cont = 0;
 			foreach (Control ctr in pnFooter.Controls)
 			{
 				if (ctr is DialogBoxButton btn)
+				{
 					btn.Click += btn_Click;
+					if (++cont == DefaultButton) btn.Select();
+				}
 			}
 		}
 
@@ -238,7 +242,7 @@ namespace anrodse.Forms
 		private void AddButton(string button, DialogBoxResult result)
 		{
 			pnFooter.Controls.Add(new Label() { Text = "", Width = 10, Dock = DockStyle.Right });
-			pnFooter.Controls.Add(new DialogBoxButton() { Text = button, Value = result, Dock = DockStyle.Right });
+			pnFooter.Controls.Add(new DialogBoxButton() { Text = button, Value = result, Dock = DockStyle.Right, });
 		}
 
 		#endregion Botones
