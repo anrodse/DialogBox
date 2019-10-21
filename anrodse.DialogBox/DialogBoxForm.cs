@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Media;
 using System.Runtime.InteropServices;
@@ -52,7 +53,7 @@ namespace anrodse.Forms
 
 		public DialogBoxIcon Image { private get; set; }
 
-		public MessageBoxDefaultButton DefaultButton { get; set; }
+		public int DefaultButton { get; set; }
 
 		public bool AlertSound { get; set; } = true;
 
@@ -115,6 +116,11 @@ namespace anrodse.Forms
 			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
+		protected override void OnClosing(CancelEventArgs e)
+		{
+			if (Disable > 0) { e.Cancel = true; }
+		}
+
 		private void btn_Click(object sender, EventArgs e)
 		{
 			if (sender is DialogBoxButton btn)
@@ -174,12 +180,12 @@ namespace anrodse.Forms
 					break;
 
 				case DialogBoxIcon.None:
+					pnIcono.Width = 0;
 					Icono = null;
 					break;
 			}
 
 			if (Image != DialogBoxIcon.None) { imgIcono.Image = new Icon(Icono, 32, 32).ToBitmap(); }
-			else { pnIcono.Width = 0; }
 		}
 
 		#endregion Imagen

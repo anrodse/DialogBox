@@ -18,7 +18,7 @@ namespace anrodse.Forms.Demo
 
 		private void btnOk_Click(object sender, EventArgs e)
 		{
-			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.None, DialogBoxIcon.Error).ToString();
+			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", DialogBoxButtons.None, DialogBoxIcon.Error, 1).ToString();
 		}
 
 		private void btnOkCancel_Click(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace anrodse.Forms.Demo
 				DialogBoxButtons.YesNoCancel,
 				timeOut: 10000,
 				disable: 2000,
-				defaultButton: MessageBoxDefaultButton.Button1
+				defaultButton: 1
 				).ToString();
 		}
 
