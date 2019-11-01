@@ -38,11 +38,13 @@
 			this.btnAbortRetryIgnore = new System.Windows.Forms.Button();
 			this.btnAbortRetryIgnoreIgnoreAll = new System.Windows.Forms.Button();
 			this.btnNone = new System.Windows.Forms.Button();
+			this.btnCustom1y2 = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// btnOk
 			// 
-			this.btnOk.Location = new System.Drawing.Point(48, 32);
+			this.btnOk.Location = new System.Drawing.Point(48, 21);
 			this.btnOk.Name = "btnOk";
 			this.btnOk.Size = new System.Drawing.Size(75, 23);
 			this.btnOk.TabIndex = 0;
@@ -52,7 +54,7 @@
 			// 
 			// txtRes
 			// 
-			this.txtRes.Location = new System.Drawing.Point(308, 136);
+			this.txtRes.Location = new System.Drawing.Point(308, 177);
 			this.txtRes.Name = "txtRes";
 			this.txtRes.Size = new System.Drawing.Size(100, 20);
 			this.txtRes.TabIndex = 1;
@@ -60,7 +62,7 @@
 			// lblRes
 			// 
 			this.lblRes.AutoSize = true;
-			this.lblRes.Location = new System.Drawing.Point(244, 139);
+			this.lblRes.Location = new System.Drawing.Point(244, 180);
 			this.lblRes.Name = "lblRes";
 			this.lblRes.Size = new System.Drawing.Size(58, 13);
 			this.lblRes.TabIndex = 2;
@@ -68,7 +70,7 @@
 			// 
 			// btnOkCancel
 			// 
-			this.btnOkCancel.Location = new System.Drawing.Point(129, 32);
+			this.btnOkCancel.Location = new System.Drawing.Point(129, 21);
 			this.btnOkCancel.Name = "btnOkCancel";
 			this.btnOkCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnOkCancel.TabIndex = 0;
@@ -78,7 +80,7 @@
 			// 
 			// btnRetryCancel
 			// 
-			this.btnRetryCancel.Location = new System.Drawing.Point(210, 32);
+			this.btnRetryCancel.Location = new System.Drawing.Point(210, 21);
 			this.btnRetryCancel.Name = "btnRetryCancel";
 			this.btnRetryCancel.Size = new System.Drawing.Size(92, 23);
 			this.btnRetryCancel.TabIndex = 0;
@@ -88,7 +90,7 @@
 			// 
 			// btnYesNo
 			// 
-			this.btnYesNo.Location = new System.Drawing.Point(308, 32);
+			this.btnYesNo.Location = new System.Drawing.Point(308, 21);
 			this.btnYesNo.Name = "btnYesNo";
 			this.btnYesNo.Size = new System.Drawing.Size(75, 23);
 			this.btnYesNo.TabIndex = 0;
@@ -98,7 +100,7 @@
 			// 
 			// btnYesNoCancel
 			// 
-			this.btnYesNoCancel.Location = new System.Drawing.Point(389, 32);
+			this.btnYesNoCancel.Location = new System.Drawing.Point(389, 21);
 			this.btnYesNoCancel.Name = "btnYesNoCancel";
 			this.btnYesNoCancel.Size = new System.Drawing.Size(96, 23);
 			this.btnYesNoCancel.TabIndex = 0;
@@ -108,7 +110,7 @@
 			// 
 			// btnAbortRetryIgnore
 			// 
-			this.btnAbortRetryIgnore.Location = new System.Drawing.Point(141, 70);
+			this.btnAbortRetryIgnore.Location = new System.Drawing.Point(141, 59);
 			this.btnAbortRetryIgnore.Name = "btnAbortRetryIgnore";
 			this.btnAbortRetryIgnore.Size = new System.Drawing.Size(116, 23);
 			this.btnAbortRetryIgnore.TabIndex = 0;
@@ -118,7 +120,7 @@
 			// 
 			// btnAbortRetryIgnoreIgnoreAll
 			// 
-			this.btnAbortRetryIgnoreIgnoreAll.Location = new System.Drawing.Point(263, 70);
+			this.btnAbortRetryIgnoreIgnoreAll.Location = new System.Drawing.Point(263, 59);
 			this.btnAbortRetryIgnoreIgnoreAll.Name = "btnAbortRetryIgnoreIgnoreAll";
 			this.btnAbortRetryIgnoreIgnoreAll.Size = new System.Drawing.Size(147, 23);
 			this.btnAbortRetryIgnoreIgnoreAll.TabIndex = 0;
@@ -128,7 +130,7 @@
 			// 
 			// btnNone
 			// 
-			this.btnNone.Location = new System.Drawing.Point(60, 70);
+			this.btnNone.Location = new System.Drawing.Point(60, 59);
 			this.btnNone.Name = "btnNone";
 			this.btnNone.Size = new System.Drawing.Size(75, 23);
 			this.btnNone.TabIndex = 0;
@@ -136,13 +138,35 @@
 			this.btnNone.UseVisualStyleBackColor = true;
 			this.btnNone.Click += new System.EventHandler(this.btnNone_Click);
 			// 
+			// btnCustom1y2
+			// 
+			this.btnCustom1y2.Location = new System.Drawing.Point(29, 111);
+			this.btnCustom1y2.Name = "btnCustom1y2";
+			this.btnCustom1y2.Size = new System.Drawing.Size(147, 23);
+			this.btnCustom1y2.TabIndex = 0;
+			this.btnCustom1y2.Text = "Custom 1, Custom 2";
+			this.btnCustom1y2.UseVisualStyleBackColor = true;
+			this.btnCustom1y2.Click += new System.EventHandler(this.btnCustom1y2_Click);
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.label1.Location = new System.Drawing.Point(12, 100);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(502, 2);
+			this.label1.TabIndex = 3;
+			// 
 			// Principal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(526, 181);
+			this.ClientSize = new System.Drawing.Size(526, 208);
+			this.Controls.Add(this.label1);
 			this.Controls.Add(this.lblRes);
 			this.Controls.Add(this.txtRes);
+			this.Controls.Add(this.btnCustom1y2);
 			this.Controls.Add(this.btnAbortRetryIgnoreIgnoreAll);
 			this.Controls.Add(this.btnAbortRetryIgnore);
 			this.Controls.Add(this.btnYesNoCancel);
@@ -170,5 +194,7 @@
 		private System.Windows.Forms.Button btnAbortRetryIgnore;
 		private System.Windows.Forms.Button btnAbortRetryIgnoreIgnoreAll;
 		private System.Windows.Forms.Button btnNone;
+		private System.Windows.Forms.Button btnCustom1y2;
+		private System.Windows.Forms.Label label1;
 	}
 }

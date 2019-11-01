@@ -1,10 +1,4 @@
-﻿using anrodse.Forms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using System;
 using System.Windows.Forms;
 
 namespace anrodse.Forms.Demo
@@ -23,7 +17,7 @@ namespace anrodse.Forms.Demo
 
 		private void btnOkCancel_Click(object sender, EventArgs e)
 		{
-			string mensajeLargo = 
+			string mensajeLargo =
 									"Texto largooooooooooooooooooooo \r\n" +
 									"Líena nueva\r\n" +
 									"Última línea\r\n";
@@ -64,7 +58,6 @@ namespace anrodse.Forms.Demo
 
 		private void btnNone_Click(object sender, EventArgs e)
 		{
-			string mensajeCorto = "Test de DialogBox";
 			string mensajeLargo = "Línea 1\r\n" +
 										"Texto largooooooooooooooooooooo jejejejs fas fda rojwe asodfha uisdjkfhasjlfh awrjlshvujawsdn ñojlqwkeafjlasdnvm,ansd jlgahwrljs erjl hgeroljgjsld,nasfjlf nower herjl jler gjlse nfgjklsdf klsdb gksdf jklsfdgjkls fjksl hgjksdf hjksd hjklsd fhgjksfgsfz sdgasf fs jejejejs fas fda rojwe asodfha uisdjkfhasjlfh awrjlshvujawsdn ñojlqwkeafjlasdnvm,ansd jlgahwrljs erjl hgeroljgjsld,nasfjlf nower herjl jler gjlse nfgjklsdf klsdb gksdf jklsfdgjkls fjksl hgjksdf hjksd hjklsd fhgjksfgsfz sdgasf fs jejejejs fas fda rojwe asodfha uisdjkfhasjlfh awrjlshvujawsdn ñojlqwkeafjlasdnvm,ansd jlgahwrljs erjl hgeroljgjsld,nasfjlf nower herjl jler gjlse nfgjklsdf klsdb gksdf jklsfdgjkls fjksl hgjksdf hjksd hjklsd fhgjksfgsfz sdgasf fs \r\n" +
 										"Líena nueva\r\n" +
@@ -143,6 +136,13 @@ namespace anrodse.Forms.Demo
 										"Última línea\r\n";
 
 			txtRes.Text = Forms.DialogBox.Show(mensajeLargo, "Titulo DialogBox", DialogBoxButtons.None).ToString();
+		}
+
+		private void btnCustom1y2_Click(object sender, EventArgs e)
+		{
+			DialogBox.DialogButton[] btns = new DialogBox.DialogButton[] { new DialogBox.DialogButton("Custom 1 (Ok)", DialogBoxResult.Ok), new DialogBox.DialogButton("Custom 2 (Cancel)", DialogBoxResult.Cancel) };
+
+			txtRes.Text = Forms.DialogBox.Show("Test de DialogBox", "Titulo DialogBox", btns).ToString();
 		}
 	}
 }

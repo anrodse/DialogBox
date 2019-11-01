@@ -239,10 +239,10 @@ namespace anrodse.Forms
 				AddButton("Cancelar", DialogBoxResult.Cancel);
 		}
 
-		private void AddButton(string button, DialogBoxResult result)
+		internal void AddButton(string button, DialogBoxResult result)
 		{
-			pnFooter.Controls.Add(new Label() { Text = "", Width = 10, Dock = DockStyle.Right });
-			pnFooter.Controls.Add(new DialogBoxButton() { Text = button, Value = result, Dock = DockStyle.Right, });
+			pnFooter.Controls.Add(new Label() { Text = "", Width = 10, Dock = DockStyle.Right });   // Separador
+			pnFooter.Controls.Add(new DialogBoxButton() { Text = button, Value = result, Dock = DockStyle.Right, Width = GetButtonWidth(button) });
 		}
 
 		#endregion Botones
@@ -261,6 +261,16 @@ namespace anrodse.Forms
 			this.Size = new Size(width, height);
 		}
 
+		private int GetButtonWidth(string text)
+		{
+			using (Graphics g = this.CreateGraphics())
+			{
+				SizeF strRectSizeF = g.MeasureString(text, this.Font);
+
+				return (int)Math.Max(Math.Ceiling(strRectSizeF.Width) + 12, 80);
+			}
+		}
+
 		private Size GetImageSize()
 		{
 			if (Image == DialogBoxIcon.None) return new Size(0, 0);
@@ -272,8 +282,6 @@ namespace anrodse.Forms
 			using (Graphics g = this.CreateGraphics())
 			{
 				SizeF strRectSizeF = g.MeasureString(lblMensaje.Text, lblMensaje.Font, new SizeF(TEXT_MAX_WIDTH, TEXT_MAX_HEIGHT));
-
-				//if (strRectSizeF.Height > 40) lblMensaje.TextAlign = ContentAlignment.TopLeft;
 
 				return new Size((int)Math.Ceiling(strRectSizeF.Width), (int)Math.Ceiling(strRectSizeF.Height) + 20);
 			}

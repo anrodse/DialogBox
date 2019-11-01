@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace anrodse.Forms
+﻿namespace anrodse.Forms
 {
 	/// <summary>
 	/// DialogBox icons
@@ -59,7 +55,6 @@ namespace anrodse.Forms
 		/// </summary>
 		Timeout
 	}
-
 
 	/// <summary>
 	/// Standard DialogBox buttons
