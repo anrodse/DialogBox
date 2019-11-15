@@ -92,10 +92,17 @@ namespace anrodse.Forms
 		{
 			if (this.components == null) this.components = new System.ComponentModel.Container();
 
+			//this.Font = new Font(System.Drawing.SystemFonts.MessageBoxFont.FontFamily, System.Drawing.SystemFonts.MessageBoxFont.Size, System.Drawing.SystemFonts.MessageBoxFont.Style);
+
+			this.Font = SystemFonts.MessageBoxFont;
+			//this.lblMensaje.Font = System.Drawing.SystemFonts.MessageBoxFont;
+			//this.lblMensaje.Font = new Font("MS Shell Dlg", lblMensaje.Font.Size);
+			//this.Font = new Font("MS Shell Dlg 2", lblMensaje.Font.Size);
+
 			PlayBeep();
 			SetButtons();
 			SetImage();
-			SetFormWidth();
+			SetFormSize();
 			StartTimers();
 		}
 
@@ -249,16 +256,18 @@ namespace anrodse.Forms
 
 		#region Tamaño
 
-		private void SetFormWidth()
+		private void SetFormSize()
 		{
 			Size btnsSize = GetButtonsSize();
 			Size textSize = GetTextSize();
 			Size imagSize = GetImageSize();
 
 			int width = Math.Max(btnsSize.Width, textSize.Width + imagSize.Width);
-			int height = Math.Max(imagSize.Height, textSize.Height) + btnsSize.Height + 74; // Mínimo 80, padding más bordes
+			int height = Math.Max(imagSize.Height, textSize.Height) + btnsSize.Height + pnBody.Padding.Top + pnBody.Padding.Bottom;
 
-			this.Size = new Size(width, height);
+			this.ClientSize = new Size(width, height);
+
+			//this.Size = new Size(width, height);
 		}
 
 		private int GetButtonWidth(string text)
@@ -274,7 +283,9 @@ namespace anrodse.Forms
 		private Size GetImageSize()
 		{
 			if (Image == DialogBoxIcon.None) return new Size(0, 0);
-			return new Size(pnIcono.Width, Math.Min(pnIcono.Height, 32));
+
+			return new Size(pnIcono.Width + pnIcono.Padding.Left + pnIcono.Padding.Right,
+				Math.Min(pnIcono.Height, 32) + pnIcono.Padding.Top + pnIcono.Padding.Bottom);
 		}
 
 		private Size GetTextSize()
@@ -283,7 +294,10 @@ namespace anrodse.Forms
 			{
 				SizeF strRectSizeF = g.MeasureString(lblMensaje.Text, lblMensaje.Font, new SizeF(TEXT_MAX_WIDTH, TEXT_MAX_HEIGHT));
 
-				return new Size((int)Math.Ceiling(strRectSizeF.Width), (int)Math.Ceiling(strRectSizeF.Height) + 20);
+				int width = (int)Math.Ceiling(strRectSizeF.Width) + lblMensaje.Padding.Left + lblMensaje.Padding.Right;
+				int height = (int)Math.Ceiling(strRectSizeF.Height) + lblMensaje.Padding.Top + lblMensaje.Padding.Bottom;
+
+				return new Size(width, height);
 			}
 		}
 
@@ -340,7 +354,7 @@ namespace anrodse.Forms
 
 		private void StartTimeoutTimer()
 		{
-			if (Timeout > 0)
+			if (Timeout > 0 && Disable <= 0)
 			{
 				if (timerTimeout == null)
 				{
@@ -392,6 +406,7 @@ namespace anrodse.Forms
 
 		private void timerTimeout_Tick(object sender, EventArgs e)
 		{
+#warning Hacer esto
 			try
 			{
 				SuspendLayout();
@@ -439,7 +454,7 @@ namespace anrodse.Forms
 
 		private void SetTimerCaption(int tiempo, string[] symbols)
 		{
-			int t = (int)tiempo / 1000;
+			int t = (int)Math.Ceiling(tiempo / 1000f);
 			int tick = (int)tiempo / TIMER_TOCK;
 			string ico = symbols[tick % symbols.Length];
 

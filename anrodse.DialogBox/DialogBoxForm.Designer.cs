@@ -34,7 +34,7 @@
 			this.pnIcono.Location = new System.Drawing.Point(10, 10);
 			this.pnIcono.Margin = new System.Windows.Forms.Padding(10);
 			this.pnIcono.Name = "pnIcono";
-			this.pnIcono.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
+			this.pnIcono.Padding = new System.Windows.Forms.Padding(10, 12, 10, 10);
 			this.pnIcono.Size = new System.Drawing.Size(52, 49);
 			this.pnIcono.TabIndex = 0;
 			// 
@@ -43,7 +43,7 @@
 			this.imgIcono.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.imgIcono.Location = new System.Drawing.Point(10, 12);
 			this.imgIcono.Name = "imgIcono";
-			this.imgIcono.Size = new System.Drawing.Size(32, 25);
+			this.imgIcono.Size = new System.Drawing.Size(32, 27);
 			this.imgIcono.TabIndex = 0;
 			this.imgIcono.TabStop = false;
 			// 
@@ -111,5 +111,6 @@
 		private System.Windows.Forms.Label lblMensaje;
 		private System.Windows.Forms.Panel pnBody;
 		private System.Windows.Forms.PictureBox imgIcono;
+
 	}
 }
