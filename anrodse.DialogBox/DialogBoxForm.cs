@@ -45,9 +45,11 @@ namespace anrodse.Forms
 
 		public int Disable { get; set; }
 
-		public string Message { get { return lblMensaje.Text; } set { lblMensaje.Text = value; } }
-
 		public string Caption { private get; set; }
+
+		public string Title { get { return lblTitulo.Text; } set { lblTitulo.Text = value/*.PadLeft(100)*/; } }
+
+		public string Message { get { return lblMensaje.Text; } set { lblMensaje.Text = value; } }
 
 		public Icon Icono { get; private set; }
 
@@ -187,7 +189,6 @@ namespace anrodse.Forms
 					break;
 
 				case DialogBoxIcon.None:
-					pnIcono.Width = 0;
 					Icono = null;
 					break;
 			}
@@ -260,14 +261,13 @@ namespace anrodse.Forms
 		{
 			Size btnsSize = GetButtonsSize();
 			Size textSize = GetTextSize();
+			Size ttleSize = GetTitleSize();
 			Size imagSize = GetImageSize();
 
-			int width = Math.Max(btnsSize.Width, textSize.Width + imagSize.Width);
-			int height = Math.Max(imagSize.Height, textSize.Height) + btnsSize.Height + pnBody.Padding.Top + pnBody.Padding.Bottom;
+			int width = Math.Max(btnsSize.Width, Math.Max(textSize.Width + imagSize.Width, ttleSize.Width)) + GetPaddingH(pnBody.Padding);
+			int height = Math.Max(imagSize.Height, textSize.Height + ttleSize.Height) + btnsSize.Height + GetPaddingV(pnBody.Padding);
 
 			this.ClientSize = new Size(width, height);
-
-			//this.Size = new Size(width, height);
 		}
 
 		private int GetButtonWidth(string text)
@@ -276,16 +276,21 @@ namespace anrodse.Forms
 			{
 				SizeF strRectSizeF = g.MeasureString(text, this.Font);
 
-				return (int)Math.Max(Math.Ceiling(strRectSizeF.Width) + 12, 80);
+				return (int)Math.Max(Math.Ceiling(strRectSizeF.Width) + 16, 80);
 			}
 		}
 
 		private Size GetImageSize()
 		{
-			if (Image == DialogBoxIcon.None) return new Size(0, 0);
-
-			return new Size(pnIcono.Width + pnIcono.Padding.Left + pnIcono.Padding.Right,
-				Math.Min(pnIcono.Height, 32) + pnIcono.Padding.Top + pnIcono.Padding.Bottom);
+			if (Image == DialogBoxIcon.None)
+			{
+				pnIcono.Visible = false;
+				return new Size(0, 0);
+			}
+			else
+			{
+				return new Size(pnIcono.Width + GetPaddingH(pnIcono.Padding), Math.Min(pnIcono.Height, 32) + GetPaddingV(pnIcono.Padding));
+			}
 		}
 
 		private Size GetTextSize()
@@ -298,6 +303,27 @@ namespace anrodse.Forms
 				int height = (int)Math.Ceiling(strRectSizeF.Height) + lblMensaje.Padding.Top + lblMensaje.Padding.Bottom;
 
 				return new Size(width, height);
+			}
+		}
+
+		private Size GetTitleSize()
+		{
+			if (String.IsNullOrEmpty(lblTitulo.Text))
+			{
+				lblTitulo.Visible = false;
+				return new Size(0, 0);
+			}
+			else
+			{
+				using (Graphics g = this.CreateGraphics())
+				{
+					SizeF strRectSizeF = g.MeasureString(lblTitulo.Text, lblTitulo.Font, new SizeF(TEXT_MAX_WIDTH, 20));
+
+					int width = (int)Math.Ceiling(strRectSizeF.Width) + GetPaddingH(lblTitulo.Padding);
+					int height = (int)Math.Ceiling(strRectSizeF.Height) + GetPaddingV(lblTitulo.Padding);
+
+					return new Size(width, height);
+				}
 			}
 		}
 
@@ -492,6 +518,16 @@ namespace anrodse.Forms
 			return sep + Caption + "\r\n"
 					+ sep + Message + "\r\n"
 					+ sep + buttonsText + "\r\n" + sep;
+		}
+
+		private int GetPaddingH(Padding p)
+		{
+			return p.Right + p.Left;
+		}
+
+		private int GetPaddingV(Padding p)
+		{
+			return p.Top + p.Bottom;
 		}
 
 		#endregion Métodos Extra

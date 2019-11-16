@@ -6,13 +6,14 @@ namespace anrodse.Forms
 	{
 		#region static
 
-		public static DialogBoxResult Show(string text, string caption = "", DialogBoxButtons buttons = DialogBoxButtons.Ok, DialogBoxIcon icon = DialogBoxIcon.None, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
-		{ return Show(null, text, caption, buttons, icon, defaultButton, timeOut, timeoutResult, disable); }
+		public static DialogBoxResult Show(string text, string caption = "", DialogBoxButtons buttons = DialogBoxButtons.Ok, DialogBoxIcon icon = DialogBoxIcon.None, string title = null, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
+		{ return Show(null, text, caption, buttons, icon, title, defaultButton, timeOut, timeoutResult, disable); }
 
-		public static DialogBoxResult Show(IWin32Window owner, string text, string caption = "", DialogBoxButtons buttons = DialogBoxButtons.Ok, DialogBoxIcon icon = DialogBoxIcon.None, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
+		public static DialogBoxResult Show(IWin32Window owner, string text, string caption = "", DialogBoxButtons buttons = DialogBoxButtons.Ok, DialogBoxIcon icon = DialogBoxIcon.None, string title = null, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
 		{
 			DialogBoxForm dg = new DialogBoxForm()
 			{
+				Title = title,
 				Message = text,
 				Caption = caption,
 				Image = icon,
@@ -29,13 +30,14 @@ namespace anrodse.Forms
 
 		#region Botones personalizados
 
-		public static DialogBoxResult Show(string text, string caption = "", DialogButton[] buttons = null, DialogBoxIcon icon = DialogBoxIcon.None, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
-		{ return Show(null, text, caption, buttons, icon, defaultButton, timeOut, timeoutResult, disable); }
+		public static DialogBoxResult Show(string text, string caption = "", DialogButton[] buttons = null, DialogBoxIcon icon = DialogBoxIcon.None, string title = null, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
+		{ return Show(null, text, caption, buttons, icon, title, defaultButton, timeOut, timeoutResult, disable); }
 
-		public static DialogBoxResult Show(IWin32Window owner, string text, string caption = "", DialogButton[] buttons = null, DialogBoxIcon icon = DialogBoxIcon.None, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
+		public static DialogBoxResult Show(IWin32Window owner, string text, string caption = "", DialogButton[] buttons = null, DialogBoxIcon icon = DialogBoxIcon.None, string title = null, int defaultButton = 1, int timeOut = 0, DialogBoxTimeoutResult timeoutResult = DialogBoxTimeoutResult.Timeout, int disable = 0)
 		{
 			DialogBoxForm dg = new DialogBoxForm()
 			{
+				Title = title,
 				Message = text,
 				Caption = caption,
 				Image = icon,

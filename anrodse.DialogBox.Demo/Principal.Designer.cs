@@ -57,6 +57,8 @@
 			this.lblDesahabilitado = new System.Windows.Forms.Label();
 			this.txtTimeout = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.txtTitle = new System.Windows.Forms.TextBox();
+			this.chkTitle = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -285,6 +287,8 @@
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.chkTitle);
+			this.groupBox2.Controls.Add(this.txtTitle);
 			this.groupBox2.Controls.Add(this.btnTextoLargo);
 			this.groupBox2.Controls.Add(this.btnTextoMedio);
 			this.groupBox2.Controls.Add(this.btnTextoCorto);
@@ -333,15 +337,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtCaption.Location = new System.Drawing.Point(6, 16);
 			this.txtCaption.Name = "txtCaption";
-			this.txtCaption.Size = new System.Drawing.Size(371, 20);
+			this.txtCaption.Size = new System.Drawing.Size(176, 20);
 			this.txtCaption.TabIndex = 1;
 			this.txtCaption.Text = "Dialog box caption";
 			// 
-			// txtDesahabilitado
+			// txtDeshabilitado
 			// 
 			this.txtDeshabilitado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.txtDeshabilitado.Location = new System.Drawing.Point(200, 169);
-			this.txtDeshabilitado.Name = "txtDesahabilitado";
+			this.txtDeshabilitado.Name = "txtDeshabilitado";
 			this.txtDeshabilitado.Size = new System.Drawing.Size(64, 20);
 			this.txtDeshabilitado.TabIndex = 1;
 			// 
@@ -372,6 +376,25 @@
 			this.label1.Size = new System.Drawing.Size(48, 13);
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Timeout:";
+			// 
+			// txtTitle
+			// 
+			this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtTitle.Location = new System.Drawing.Point(188, 16);
+			this.txtTitle.Name = "txtTitle";
+			this.txtTitle.Size = new System.Drawing.Size(189, 20);
+			this.txtTitle.TabIndex = 3;
+			this.txtTitle.Text = "Dialog box title";
+			// 
+			// chkTitle
+			// 
+			this.chkTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.chkTitle.AutoSize = true;
+			this.chkTitle.Location = new System.Drawing.Point(360, 19);
+			this.chkTitle.Name = "chkTitle";
+			this.chkTitle.Size = new System.Drawing.Size(15, 14);
+			this.chkTitle.TabIndex = 4;
+			this.chkTitle.UseVisualStyleBackColor = true;
 			// 
 			// Principal
 			// 
@@ -441,5 +464,7 @@
 		private System.Windows.Forms.Label lblDesahabilitado;
 		private System.Windows.Forms.TextBox txtTimeout;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.TextBox txtTitle;
+		private System.Windows.Forms.CheckBox chkTitle;
 	}
 }
