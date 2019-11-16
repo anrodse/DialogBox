@@ -116,7 +116,8 @@ namespace anrodse.Forms
 				SetResultAndClose(DialogBoxResult.Cancel);
 			}
 
-			if ((int)keyData == (int)(Keys.Control | Keys.Insert))
+			if ((int)keyData == (int)(Keys.Control | Keys.Insert)
+				|| (int)keyData == (int)(Keys.Control | Keys.C))
 			{
 				Clipboard.SetText(GetDialogAsString());
 				return true;
@@ -507,17 +508,25 @@ namespace anrodse.Forms
 
 		private string GetDialogAsString()
 		{
-			string sep = "------------------------\r\n";
+			string sep = "------------------------" + Environment.NewLine;
 
+			// Caption
+			string caption = sep + Caption + Environment.NewLine;
+
+			// Title
+			string title = (!String.IsNullOrEmpty(Title) ? sep + Title + Environment.NewLine : "");
+
+			// Message
+			string message = sep + Message + Environment.NewLine;
+
+			// Buttons
 			string buttonsText = String.Empty;
 			foreach (Control button in pnFooter.Controls)
-			{
-				buttonsText = ((button as DialogBoxButton)?.Text ?? "") + "  ";
-			}
+			{ buttonsText += ((button as DialogBoxButton)?.Text ?? "") + "  "; }
+			buttonsText = sep + buttonsText + Environment.NewLine + sep;
 
-			return sep + Caption + "\r\n"
-					+ sep + Message + "\r\n"
-					+ sep + buttonsText + "\r\n" + sep;
+			// Result
+			return caption + title + message + buttonsText;
 		}
 
 		private int GetPaddingH(Padding p)
