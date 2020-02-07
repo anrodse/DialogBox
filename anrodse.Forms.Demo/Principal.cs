@@ -26,6 +26,12 @@ namespace anrodse.Forms.Demo
 
 		#region Eventos Texto
 
+		private void btnTextoVacio_Click(object sender, EventArgs e)
+		{
+			txtMensaje.Text = "";
+		}
+
+
 		private void btnTextoCorto_Click(object sender, EventArgs e)
 		{
 			txtMensaje.Text = textoCorto;
@@ -45,50 +51,52 @@ namespace anrodse.Forms.Demo
 
 		private void btnOk_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.Ok, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.OK, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.Ok);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.OK);
 		}
 
 		private void btnOkCancel_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.OkCancel, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.OKCancel, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.OkCancel);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.OKCancel);
 		}
 
 		private void btnRetryCancel_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.RetryCancel, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.RetryCancel, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.RetryCancel);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.RetryCancel);
 		}
 
 		private void btnYesNo_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.YesNo, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.YesNo, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.YesNo);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.YesNo);
 		}
 
 		private void btnYesNoCancel_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.YesNoCancel, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.YesNoCancel, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.YesNoCancel);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.YesNoCancel);
 		}
 
 		private void btnAbortRetryIgnore_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.AbortRetryIgnore, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.AbortRetryIgnore, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.AbortRetryIgnore);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.AbortRetryIgnore);
 		}
 
 		private void btnAbortRetryIgnoreIgnoreAll_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.AbortRetryIgnoreIgnoreAll, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.AbortRetryIgnoreIgnoreAll);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.AbortRetryIgnore);
 		}
 
 		private void btnNone_Click(object sender, EventArgs e)
 		{
-			if (!chkWinforms.Checked) txtRes.Text = Forms.DialogBox.Show(txtMensaje.Text, txtCaption.Text, DialogBoxButtons.None, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
-			else txtRes.Text = MessageBox.Show(txtMensaje.Text, txtCaption.Text, MessageBoxButtons.OK, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+			if (!chkWinforms.Checked) txtRes.Text = ShowDialogBox(DialogBoxButtons.None);
+			else txtRes.Text = ShowMessageBox(MessageBoxButtons.OK);
 		}
+
 
 		private void btnCustom1y2_Click(object sender, EventArgs e)
 		{
@@ -100,6 +108,23 @@ namespace anrodse.Forms.Demo
 		}
 
 		#endregion Eventos
+
+		private string ShowDialogBox(DialogBoxButtons btns)
+		{
+			return Forms.DialogBox.Show(GetMessage(), txtCaption.Text, btns, GetDialogBoxIcon(), GetTitleText(), 1, timeOut: GetTimeout(), disable: GetDeshabilitado()).ToString();
+		}
+
+		private string ShowMessageBox(MessageBoxButtons btns)
+		{
+			return System.Windows.Forms.MessageBox.Show(GetMessage(), txtCaption.Text, MessageBoxButtons.OK, GetWinformsIcon(), defaultButton: MessageBoxDefaultButton.Button1).ToString();
+		}
+
+		private string GetMessage()
+		{
+			if (String.IsNullOrEmpty(txtMensaje.Text)) return null;
+
+			return txtMensaje.Text;
+		}
 
 		private MessageBoxIcon GetWinformsIcon()
 		{

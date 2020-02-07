@@ -265,7 +265,7 @@ namespace anrodse.Forms
 			Size ttleSize = GetTitleSize();
 			Size imagSize = GetImageSize();
 
-			int width = Math.Max(btnsSize.Width, Math.Max(textSize.Width + imagSize.Width, ttleSize.Width)) + GetPaddingH(pnBody.Padding);
+			int width = Math.Max(btnsSize.Width, Math.Max(textSize.Width + imagSize.Width, ttleSize.Width + imagSize.Width)) + GetPaddingH(pnBody.Padding);
 			int height = Math.Max(imagSize.Height, textSize.Height + ttleSize.Height) + btnsSize.Height + GetPaddingV(pnBody.Padding);
 
 			this.ClientSize = new Size(width, height);

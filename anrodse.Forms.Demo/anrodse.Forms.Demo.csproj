@@ -72,7 +72,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\anrodse.DialogBox\anrodse.Forms.csproj">
+    <ProjectReference Include="..\anrodse.Forms\anrodse.Forms.csproj">
       <Project>{4a01de45-ff47-4b2b-94f7-965bfc804fab}</Project>
       <Name>anrodse.Forms</Name>
     </ProjectReference>

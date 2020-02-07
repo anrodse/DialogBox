@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anrodse.Forms", "anrodse.DialogBox\anrodse.Forms.csproj", "{4A01DE45-FF47-4B2B-94F7-965BFC804FAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anrodse.Forms", "anrodse.Forms\anrodse.Forms.csproj", "{4A01DE45-FF47-4B2B-94F7-965BFC804FAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anrodse.Forms.Demo", "anrodse.DialogBox.Demo\anrodse.Forms.Demo.csproj", "{BA5A6420-00CC-40E7-9E41-2BCAA516DD81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anrodse.Forms.Demo", "anrodse.Forms.Demo\anrodse.Forms.Demo.csproj", "{BA5A6420-00CC-40E7-9E41-2BCAA516DD81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

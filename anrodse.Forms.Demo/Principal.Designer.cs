@@ -49,6 +49,8 @@
 			this.rdAsterisk = new System.Windows.Forms.RadioButton();
 			this.rdExclamation = new System.Windows.Forms.RadioButton();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.chkTitle = new System.Windows.Forms.CheckBox();
+			this.txtTitle = new System.Windows.Forms.TextBox();
 			this.btnTextoLargo = new System.Windows.Forms.Button();
 			this.btnTextoMedio = new System.Windows.Forms.Button();
 			this.btnTextoCorto = new System.Windows.Forms.Button();
@@ -57,8 +59,7 @@
 			this.lblDesahabilitado = new System.Windows.Forms.Label();
 			this.txtTimeout = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this.txtTitle = new System.Windows.Forms.TextBox();
-			this.chkTitle = new System.Windows.Forms.CheckBox();
+			this.btnTextoVacio = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -291,6 +292,7 @@
 			this.groupBox2.Controls.Add(this.txtTitle);
 			this.groupBox2.Controls.Add(this.btnTextoLargo);
 			this.groupBox2.Controls.Add(this.btnTextoMedio);
+			this.groupBox2.Controls.Add(this.btnTextoVacio);
 			this.groupBox2.Controls.Add(this.btnTextoCorto);
 			this.groupBox2.Controls.Add(this.txtCaption);
 			this.groupBox2.Controls.Add(this.txtMensaje);
@@ -301,9 +303,28 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Resultado:";
 			// 
+			// chkTitle
+			// 
+			this.chkTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.chkTitle.AutoSize = true;
+			this.chkTitle.Location = new System.Drawing.Point(360, 19);
+			this.chkTitle.Name = "chkTitle";
+			this.chkTitle.Size = new System.Drawing.Size(15, 14);
+			this.chkTitle.TabIndex = 4;
+			this.chkTitle.UseVisualStyleBackColor = true;
+			// 
+			// txtTitle
+			// 
+			this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtTitle.Location = new System.Drawing.Point(188, 16);
+			this.txtTitle.Name = "txtTitle";
+			this.txtTitle.Size = new System.Drawing.Size(170, 20);
+			this.txtTitle.TabIndex = 3;
+			this.txtTitle.Text = "Dialog box title";
+			// 
 			// btnTextoLargo
 			// 
-			this.btnTextoLargo.Location = new System.Drawing.Point(231, 107);
+			this.btnTextoLargo.Location = new System.Drawing.Point(277, 107);
 			this.btnTextoLargo.Name = "btnTextoLargo";
 			this.btnTextoLargo.Size = new System.Drawing.Size(92, 23);
 			this.btnTextoLargo.TabIndex = 2;
@@ -313,7 +334,7 @@
 			// 
 			// btnTextoMedio
 			// 
-			this.btnTextoMedio.Location = new System.Drawing.Point(133, 107);
+			this.btnTextoMedio.Location = new System.Drawing.Point(179, 107);
 			this.btnTextoMedio.Name = "btnTextoMedio";
 			this.btnTextoMedio.Size = new System.Drawing.Size(92, 23);
 			this.btnTextoMedio.TabIndex = 2;
@@ -323,7 +344,7 @@
 			// 
 			// btnTextoCorto
 			// 
-			this.btnTextoCorto.Location = new System.Drawing.Point(35, 107);
+			this.btnTextoCorto.Location = new System.Drawing.Point(81, 107);
 			this.btnTextoCorto.Name = "btnTextoCorto";
 			this.btnTextoCorto.Size = new System.Drawing.Size(92, 23);
 			this.btnTextoCorto.TabIndex = 2;
@@ -377,24 +398,15 @@
 			this.label1.TabIndex = 2;
 			this.label1.Text = "Timeout:";
 			// 
-			// txtTitle
+			// btnTextoVacio
 			// 
-			this.txtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.txtTitle.Location = new System.Drawing.Point(188, 16);
-			this.txtTitle.Name = "txtTitle";
-			this.txtTitle.Size = new System.Drawing.Size(189, 20);
-			this.txtTitle.TabIndex = 3;
-			this.txtTitle.Text = "Dialog box title";
-			// 
-			// chkTitle
-			// 
-			this.chkTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.chkTitle.AutoSize = true;
-			this.chkTitle.Location = new System.Drawing.Point(360, 19);
-			this.chkTitle.Name = "chkTitle";
-			this.chkTitle.Size = new System.Drawing.Size(15, 14);
-			this.chkTitle.TabIndex = 4;
-			this.chkTitle.UseVisualStyleBackColor = true;
+			this.btnTextoVacio.Location = new System.Drawing.Point(8, 108);
+			this.btnTextoVacio.Name = "btnTextoVacio";
+			this.btnTextoVacio.Size = new System.Drawing.Size(67, 23);
+			this.btnTextoVacio.TabIndex = 2;
+			this.btnTextoVacio.Text = "Vacío";
+			this.btnTextoVacio.UseVisualStyleBackColor = true;
+			this.btnTextoVacio.Click += new System.EventHandler(this.btnTextoVacio_Click);
 			// 
 			// Principal
 			// 
@@ -466,5 +478,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtTitle;
 		private System.Windows.Forms.CheckBox chkTitle;
+		private System.Windows.Forms.Button btnTextoVacio;
 	}
 }

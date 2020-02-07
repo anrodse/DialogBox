@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/anrodse/DialogBox</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/anrodse/DialogBox/master/anrodse.DialogBox/img/icono.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Package update release.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>fomrs messagebox dialog alert anrodse</tags>
+  </metadata>
+</package>
